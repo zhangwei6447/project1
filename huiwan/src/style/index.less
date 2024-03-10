@@ -1,0 +1,60 @@
+@import './common.less';
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/** css3 支持变量 -- 所有的变量都只能在root里边定义 -- 必须以--开头 */
+:root {
+    --nav-height: 46px;
+}
+
+html {
+    font-size: 20px;
+}
+
+.application-container {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: @bc0;
+    z-index: 9;
+}
+
+/** 荟玩科技有限公司 &copy; 2023 ~ 10 ~ 21 样式 */
+.bottom_title {
+    display: block;
+    position: absolute;
+    bottom: 25px;
+    font-size: .6rem;
+    width: 100%;
+    text-align: center;
+    color: @fc2;
+}
+
+/** 全局组件样式---tabs */
+.cart-icon {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    width: 32px;
+    height: 26px;
+    // 图片待替换..................
+    background: url(../image//logo.png) center center / 24px 24px no-repeat;
+}
+
+.layout {
+    display: block;
+    position: relative;
+    height: 100%;
+
+    >main {
+        height: calc(100% - 50px);
+    }
+}
