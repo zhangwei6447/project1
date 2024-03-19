@@ -1,6 +1,6 @@
 <template>
     <div class="home-box" @scroll="scrollEvt">
-        <header>会员购</header>
+        <header @click="testEvt()">会员购</header>
         <div class="search" @click="router.push('/search')">搜一搜</div>
         <div class="types">
             <div class="item" v-for="it in types" :key="it.txt" @click="toType(it.txt)">
@@ -9,7 +9,8 @@
             </div>
         </div>
         <div class="rem">
-            <div class="item" v-for="it in recommand" :key="it.goods_id">
+            <div class="item" v-for="it in recommand" :key="it.goods_id"
+                @click="router.push({ path: '/detail', query: { goods_id: it.goods_id } })">
                 <img :src="it.img[0]" alt="">
                 <div class="title">{{ it.name }}</div>
                 <div class="price">¥ <span>{{ it.price }}</span></div>
@@ -26,18 +27,18 @@
 <script setup>
 // ============================引入================================== //
 import { ref } from "vue";
-import { useRouter,useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import { homeRecommendApi, homeTypesApi } from '../../apis/home.js'
 // ============================变量================================ //
 const types = ref([])
 const recommand = ref([])
 const router = useRouter()
-const route=useRoute()
 const page = ref(1)
 const hasMore = ref(true)
 const loading = ref(true)
-const toListParam=ref('')
+const toListParam = ref('')
 // =============================方法================================= //
+
 /** 获取types数据 */
 homeTypesApi().then((d) => {
     if (d.code === 200) types.value = d.data
@@ -75,8 +76,8 @@ function scrollEvt(evt) {
  * 分类跳转
  */
 function toType(goodsType) {
-    toListParam.value=goodsType
-    router.push({path:'/list',query:{goodsType:toListParam.value}})
+    toListParam.value = goodsType
+    router.push({ path: '/list', query: { goodsType: toListParam.value } })
 }
 </script>
 <!-- *********************************************************** -->

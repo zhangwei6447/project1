@@ -11,6 +11,7 @@ export default defineConfig({
     proxy: {
       "/apis": {
         target: 'http://127.0.0.1:8888',
+        // target:'http://localhost:8888',
         changeOrigin: true,
         rewrite: function (pathname) {
           return pathname.replace('/apis', '')

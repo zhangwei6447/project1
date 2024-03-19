@@ -14,7 +14,9 @@ const LoginTwo=()=>import("../pages/login/LoginTwo.vue");
 const Home=()=>import("/src/pages/home/Home.vue");
 const List=()=>import("/src/pages/home/List.vue");
 const DetailList=()=>import("/src/pages/home/DetailList.vue")
-
+const GoodsDetail=()=>import("../pages/goodsdetail/index.vue")
+const Remark=()=>import("../pages/remark/index.vue")
+const Cart=()=>import("../pages/cart/index.vue")
 /**  */
 export default [
     /**
@@ -29,5 +31,8 @@ export default [
     {path: '/logintwo', component: LoginTwo, meta: { nologin: true, layout: 'blank-layout' },},
     { path: '/home', component: Home },
     { path: '/list', component: List, meta: { layout: 'blank-layout' },},
-    { path: '/detaillist', component: DetailList, meta: { layout: 'blank-layout' },}
+    { path: '/detaillist', component: DetailList, meta: { layout: 'blank-layout' },},
+    { path: '/detail', component: GoodsDetail, meta: { layout: 'blank-layout' },},
+    { path: '/remark', component: Remark, meta: { layout: 'blank-layout' },},
+    { path: '/cart', component: Cart },
 ]

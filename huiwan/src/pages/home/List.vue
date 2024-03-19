@@ -66,12 +66,12 @@
         </van-sticky>
 
         <div class="rem">
-            <div class="item" v-for="it in recommand" :key="it.goods_id">
+            <div class="item" v-for="it in recommand" :key="it.goods_id" @click="router.push({path:'/detail',query:{goods_id:it.goods_id}})">
                 <img :src="it.img[0]" alt="">
                 <div class="title">{{ it.name }}</div>
                 <div class="price">
                     <p>¥ <span>{{ it.price }}</span></p>
-                    <p>{{ it.want }}人想要</p>
+                    <p>{{ it.want.length }}人想要</p>
                 </div>
             </div>
         </div>

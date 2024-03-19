@@ -23,8 +23,39 @@ function decodeApi(msg) {
 function valiPhone(phone) {
     return /^1[3-9]{1}[0-9]{9}$/.test(phone + '')
 }
+/**
+ * base64转file
+ */
+function base64ToFile(base64, fileName) {
+    let arr = base64.split(",");
+    let mime=arr[0].split(';')[0].split('/')[1]
+    let bstr = window.atob(arr[1]);
+    let n = bstr.length;
+    let u8arr = new Uint8Array(n);
+
+    while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new FormData([u8arr], fileName, { type: mime });
+}
+
+// function base64ToFile(filename, base64Data) {
+//     let str=base64Data.value[0].content.split(',')[1]
+//     // 将 base64 数据解码为字符串
+//     const decodedData = atob(str);
+
+//     // 创建 FormData 对象
+//     const formData = new FormData();
+
+//     // 将解码后的字符串添加到 FormData 对象中
+//     formData.append(filename, decodedData);
+
+//     return formData;
+// }
+
 export {
     encodeApi,
     decodeApi,
-    valiPhone
+    valiPhone,
+    base64ToFile
 }

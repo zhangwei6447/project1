@@ -72,10 +72,10 @@ const autoLogin = ref(false)
 /** 点击获取验证码 */
 async function getCodeEvt() {
     /** 验证手机号 */
-    // if (!valiPhone(Number(phone.value))) {
-    //     showToast('请输入正确的手机号')
-    //     return
-    // }
+    if (!valiPhone(Number(phone.value))) {
+        showToast('请输入正确的手机号')
+        return
+    }
     /** 获取验证码 */
     if (codeMsg.value !== '获取验证码') return
     codeMsg.value = '获取中'

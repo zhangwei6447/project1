@@ -19,7 +19,11 @@ Ajax.interceptors.request.use(function (config) {
     /** 如果返回一个Promise，那么请求不会发送到后端 */
     // return Promise.reject({})
     /** 如果返回配置对象，那么会发送请求 -- 所以可以在这里添加数据 */
-    config.headers.token = useCommonStore().token
+    config.headers.token = useCommonStore().token,
+    config.headers.user_id = useCommonStore().user_id,
+    config.headers.store_id = useCommonStore().store_id,
+    config.headers.goods_id = useCommonStore().goods_id,
+    config.headers.remark_id = useCommonStore().remark_id
     return config
 })
 
@@ -27,16 +31,14 @@ Ajax.interceptors.request.use(function (config) {
  * 封装一个完整的请求方法
  * @param {req} req
  * */
-export default function request(req) {
+export function request(req) {
     return new Promise(resolve => {
         Ajax.request({
             method: req.method || 'get',
             url: req.url,
             params: req.params || {},
             data: req.data || {},
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
+            headers:req.headers
         }).then(function ({ data }) {
             resolve(data)
         }).catch(function (e) {
@@ -44,3 +46,4 @@ export default function request(req) {
         })
     })
 }
+

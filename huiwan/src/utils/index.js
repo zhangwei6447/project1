@@ -3,8 +3,8 @@
  * @description 通用的其他方法
  */
 
-import { showToast } from "vant";
-import { cartAddApi, cartModefin, getCartList } from "../apis/cartApi";
+// import { showToast } from "vant";
+// import { cartAddApi, cartModefin, getCartList } from "../apis/cartApi";
 import { useCommonStore } from "../store";
 
 
@@ -14,47 +14,47 @@ const store = useCommonStore()
 /** 添加到购物车
  * params : it
  */
-function addToCart(it){
-    let obj = {
-        userId:store.userInfo.id,
-        price:it.price,
-        id:it.id,
-        time:Date.now()+'',
-        count:'1',
-        name:it.title,
-        detailaddress:it,
-        bgUrl:it.path,
-    }
-    getCartList(store.userInfo.id).then((d)=>{
-        if(d.code ==200){
-            if(d.data.some((oo)=>{return oo.id == it.id})){
-                let theCount = 0;
-                d.data.forEach((oo)=>{
-                    if(oo.id == it.id){
-                        theCount = oo.count
-                    }
-                })
-                cartModefin({
-                    userId:store.userInfo.id,
-                    id:it.id,
-                    count:(theCount-0)+1,
-                }).then((d1)=>{
-                    if(d1.code == 200){
-                        showToast(d1.message)
-                    }
-                })
-            }else{
-                cartAddApi(obj).then((d2)=>{
-                    if(d2.code == 200){
-                        showToast(d2.message)
-                    }else{
-                        showToast(d2.message)
-                    }
-                })
-            }     
-        }
-    })
-}
+// function addToCart(it){
+//     let obj = {
+//         userId:store.userInfo.id,
+//         price:it.price,
+//         id:it.id,
+//         time:Date.now()+'',
+//         count:'1',
+//         name:it.title,
+//         detailaddress:it,
+//         bgUrl:it.path,
+//     }
+//     getCartList(store.userInfo.id).then((d)=>{
+//         if(d.code ==200){
+//             if(d.data.some((oo)=>{return oo.id == it.id})){
+//                 let theCount = 0;
+//                 d.data.forEach((oo)=>{
+//                     if(oo.id == it.id){
+//                         theCount = oo.count
+//                     }
+//                 })
+//                 cartModefin({
+//                     userId:store.userInfo.id,
+//                     id:it.id,
+//                     count:(theCount-0)+1,
+//                 }).then((d1)=>{
+//                     if(d1.code == 200){
+//                         showToast(d1.message)
+//                     }
+//                 })
+//             }else{
+//                 cartAddApi(obj).then((d2)=>{
+//                     if(d2.code == 200){
+//                         showToast(d2.message)
+//                     }else{
+//                         showToast(d2.message)
+//                     }
+//                 })
+//             }     
+//         }
+//     })
+// }
 
 function scaleImage(_file){
     return new Promise(resolve => {
@@ -100,7 +100,7 @@ function scaleImage(_file){
     })
 }
 export {
-    addToCart,
+    // addToCart,
     scaleImage
 }
 
