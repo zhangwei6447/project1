@@ -30,10 +30,10 @@
             <div class="banner">
                 <van-swipe>
                     <van-swipe-item v-for="(it, i) in goods_img" :key="it">
-                        <img :src="it" alt="" @click="preImg(it, i)">
+                        <img :src="it || ''" alt="" @click="preImg(it, i)">
                     </van-swipe-item>
                     <template #indicator="{ active, total }">
-                        <div class="custom-indicator">{{ active + 1 }}/{{ total }}</div>
+                        <div class="custom-indicator">{{ (active + 1) || 0 }}/{{ total }}</div>
                     </template>
                 </van-swipe>
             </div>
@@ -101,7 +101,7 @@
                 <div class="store">
                     <div class="card">
                         <div class="left">
-                            <img :src="store_logo" alt="">
+                            <img :src="store_logo || ''" alt="">
                             <div class="it">
                                 <span>{{ store_name }}</span>
                                 <div>
@@ -153,36 +153,36 @@
                 </div>
                 <div class="center">
                     <div class="left">
-                        <img :src="'/apis' + remarkImageArr[0]" alt="">
+                        <img :src="('/apis' + remarkImageArr[0]) || ''" alt="">
                     </div>
                     <div class="right">
                         <div v-for="it in remarkImageArr.slice(1, 5)" :key="it">
-                            <img :src="'/apis' + it" alt="">
+                            <img :src="('/apis' + it) || ''" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="btn">
-                    <span @click="router.push({path:'/remark',query:{goods_id:goodsId}})">查看全部讨论</span>
+                    <span @click="router.push({ path: '/remark', query: { goods_id: goodsId } })">查看全部讨论</span>
                 </div>
             </div>
             <!-- 商品详情 -->
             <div class="goods_detail" id="detail">
                 <p>商品详情</p>
                 <div class="detail">
-                    <img :src="it" alt="" v-for="(it, index) in goods_detail" :key="it"
+                    <img :src="it || ''" alt="" v-for="(it, index) in goods_detail" :key="it"
                         @click="detailImgEvt(it, index)">
                 </div>
             </div>
         </main>
         <!-- 底部按钮 -->
         <footer>
-            <div>
+            <div @click="toServiceEvt()">
                 <van-icon name="service-o" size="24" color="#717171" />
             </div>
-            <div>
+            <div @click="router.push('/cart')">
                 <van-icon name="cart-o" size="24" color="#717171" />
                 <div>
-                    <span>3</span>
+                    <span>{{ cart_goods_num }}</span>
                 </div>
             </div>
             <div @click="addCartEvt()">
@@ -295,17 +295,18 @@
 // ===========================引入============================ //
 import { useRouter, useRoute } from 'vue-router';
 import { computed, ref, watch } from 'vue'
-import { getGoodsDetailApi, queryStoreApi, uploadRemarkImgApi, addRemarkApi, cancelCollectGoodsApi, collectGoodsApi, queryRemarkApi } from '../../apis/home.js';
+import { getGoodsDetailApi, queryStoreApi, uploadRemarkImgApi, addRemarkApi, cancelCollectGoodsApi, collectGoodsApi, queryRemarkApi, browsingHistoryApi } from '../../apis/home.js';
 import { scaleImage } from '../../utils/index.js';
 import { useCommonStore } from '../../store';
 import { showToast } from "vant";
 import { queryUserInfoApi } from '../../apis/userApi.js';
-import { cartAddApi } from '../../apis/cart.js';
+import { cartAddApi, getCartApi } from '../../apis/cart.js';
+import { chatAddApi } from '../../apis/chat.js';
 // ===========================变量============================ //
 const router = useRouter()
 const route = useRoute()
 const store = useCommonStore()
-const pageName=ref()
+const pageName = ref()
 // 商品id
 const goodsId = ref()
 // 商品信息
@@ -404,27 +405,59 @@ const remarkNum = ref()
 
 // 是否收藏该商品
 const is_collect_goods = ref(false)
+
+// 购物车信息
+const cartInfo = ref()
+// 购物车商品数量
+const cart_goods_num = ref()
 // ===========================方法============================ //
-/** 加入购物车 */
-async function addCartEvt(){
-    let obj={
-        user_id:store.user_id,
-        goods_id:goodsInfo.value._id,
-        goods_name:goodsInfo.value.name,
-        goods_num:1,
-        goods_price:goodsInfo.value.price,
+/** 浏览商品记录 */
+async function browingHistoryEvt() {
+    let res = await browsingHistoryApi(route.query.goods_id, store.userInfo._id, Date.now())
+}
+browingHistoryEvt()
+/** 跳转到客服页面 */
+async function toServiceEvt() {
+    router.push({ path: '/service', query: { store_id: storeInfo.value.store_id } })
+    let obj = {
+        user_id: store.userInfo._id,
+        store_id: storeInfo.value._id
     }
-    let res=await cartAddApi(obj)
-    if(res.code===200){
+    let res = await chatAddApi(obj)
+}
+/** 查询购物车 */
+async function queryCartEvt() {
+    let res = await getCartApi(store.user_id)
+    if (res.code !== 200) return
+    cartInfo.value = res.data
+    let num = 0
+    cartInfo.value.forEach(it => {
+        num += it.goods_num
+    })
+    cart_goods_num.value = num
+}
+queryCartEvt()
+/** 加入购物车 */
+async function addCartEvt() {
+    let obj = {
+        user_id: store.user_id,
+        goods_id: goodsInfo.value._id,
+        goods_name: goodsInfo.value.name,
+        goods_num: 1,
+        goods_price: goodsInfo.value.price,
+    }
+    let res = await cartAddApi(obj)
+    if (res.code === 200) {
         showToast('加车成功')
+        queryCartEvt()
     }
 }
 /** 改变评论图片 */
 watch(
     () => route.query.goods_id,
     async function () {
-        store.goods_id=route.query.goods_id
-        let d2=await queryRemarkApi()
+        store.goods_id = route.query.goods_id
+        let d2 = await queryRemarkApi()
         if (d2.code === 200) {
             remarkNum.value = d2.remark.length
             d2.remark.forEach(it => {
@@ -443,7 +476,7 @@ watch(
 // 查询用户信息
 async function queryUserInfo() {
     let res = await queryUserInfoApi()
-    store.user_id=store.userInfo._id
+    store.user_id = store.userInfo._id
     if (res.code === 200) {
         let user_goods_collect = res.data.goods_collect || []
         is_collect_goods.value = user_goods_collect.some(it => {
@@ -556,7 +589,7 @@ function showParams2() {
 watch(
     () => route.query.goods_id,
     function () {
-        
+
         goodsId.value = route.query.goods_id
         getGoodsDetailApi(goodsId.value).then(d => {
             goodsInfo.value = d.data

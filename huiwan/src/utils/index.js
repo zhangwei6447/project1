@@ -99,8 +99,17 @@ function scaleImage(_file){
         _fr.readAsDataURL(_file);
     })
 }
+/** 计算时间戳 */
+function formatTimestampToDate(timestamp) {
+    const date = new Date(timestamp);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
 export {
     // addToCart,
-    scaleImage
+    scaleImage,
+    formatTimestampToDate
 }
 

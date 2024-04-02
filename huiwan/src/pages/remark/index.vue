@@ -105,11 +105,14 @@
         </main>
         <!-- 底部按钮 -->
         <footer>
-            <div>
+            <div @click="toServiceEvt()">
                 <van-icon name="service-o" size="24" color="#717171" />
             </div>
-            <div>
+            <div @click="router.push('/cart')">
                 <van-icon name="cart-o" size="24" color="#717171" />
+                <div>
+                    <span>{{ cart_goods_num }}</span>
+                </div>
             </div>
             <div @click="addCartEvt()">
                 <van-button color="#7232dd" plain>加入购物车</van-button>
@@ -149,7 +152,8 @@
             v-if="showBubble" />
         <!-- 弹出--发布评论 -->
         <div class="pop2">
-            <van-popup v-model:show="showReleaseRemark" position="bottom" :style="{ height: '52%' }" @close="closePop2Evt()">
+            <van-popup v-model:show="showReleaseRemark" position="bottom" :style="{ height: '52%' }"
+                @close="closePop2Evt()">
                 <div class="head">
                     <span>发表评论</span>
                     <van-icon name="cross" color="#B6B6B6" size="20" />
@@ -194,7 +198,8 @@ import { queryUserInfoApi2 } from '../../apis/userApi';
 import { addReplyApi, cancelRemarkLikeApi, cancelReplyLikeApi, remarkLikeApi, replyLikeApi } from '../../apis/remark'
 import { showToast } from 'vant';
 import { scaleImage } from '../../utils';
-import { cartAddApi } from '../../apis/cart';
+import { cartAddApi, getCartApi } from '../../apis/cart';
+import { chatAddApi } from '../../apis/chat';
 // ===========================变量============================ //
 const router = useRouter()
 const route = useRoute()
@@ -243,29 +248,57 @@ const check_dongtai = ref()
 const isSend = ref()
 // 发送按钮是否可用
 const is_sendmsg = ref(false)
+
+// 购物车信息
+const cartInfo = ref()
+// 购物车商品数量
+const cart_goods_num = ref()
 // ===========================方法============================ //
-/** 加入购物车 */
-async function addCartEvt(){
-    let obj={
-        user_id:store.user_id,
-        goods_id:goodsInfo.value._id,
-        goods_name:goodsInfo.value.name,
-        goods_num:1,
-        goods_price:goodsInfo.value.price,
+/** 跳转到客服页面 */
+async function toServiceEvt(){
+    router.push({path:'/service',query:{store_id:storeInfo.value.store_id}})
+    let obj = {
+        user_id: store.userInfo._id,
+        store_id: storeInfo.value._id
     }
-    let res=await cartAddApi(obj)
-    if(res.code===200){
+    let res = await chatAddApi(obj)
+
+}
+/** 查询购物车 */
+async function queryCartEvt() {
+    let res = await getCartApi(store.user_id)
+    if (res.code !== 200) return
+    cartInfo.value = res.data
+    let num = 0
+    cartInfo.value.forEach(it => {
+        num += it.goods_num
+    })
+    cart_goods_num.value = num
+}
+queryCartEvt()
+/** 加入购物车 */
+async function addCartEvt() {
+    let obj = {
+        user_id: store.user_id,
+        goods_id: goodsInfo.value._id,
+        goods_name: goodsInfo.value.name,
+        goods_num: 1,
+        goods_price: goodsInfo.value.price,
+    }
+    let res = await cartAddApi(obj)
+    if (res.code === 200) {
         showToast('加车成功')
+        queryCartEvt()
     }
 }
 /** 弹出--评论框 */
 function showPop2Evt() {
     showReleaseRemark.value = true
-    showBubble.value=false
+    showBubble.value = false
 }
 /**  */
-function closePop2Evt(){
-    showBubble.value=true
+function closePop2Evt() {
+    showBubble.value = true
 }
 /** 发送按钮是否可用 */
 function textChangeEvt() {

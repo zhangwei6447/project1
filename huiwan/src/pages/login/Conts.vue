@@ -7,7 +7,7 @@
     </div>
 </template>
 <!-- ***************************************************** -->
-<script lang="ts" setup>
+<script setup>
 // ===========================引入============================ //
 import { ref } from "vue"
 import { useRouter } from "vue-router";

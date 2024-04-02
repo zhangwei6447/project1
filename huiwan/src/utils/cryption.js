@@ -39,19 +39,6 @@ function base64ToFile(base64, fileName) {
     return new FormData([u8arr], fileName, { type: mime });
 }
 
-// function base64ToFile(filename, base64Data) {
-//     let str=base64Data.value[0].content.split(',')[1]
-//     // 将 base64 数据解码为字符串
-//     const decodedData = atob(str);
-
-//     // 创建 FormData 对象
-//     const formData = new FormData();
-
-//     // 将解码后的字符串添加到 FormData 对象中
-//     formData.append(filename, decodedData);
-
-//     return formData;
-// }
 
 export {
     encodeApi,

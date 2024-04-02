@@ -58,8 +58,51 @@ export const REMARK_REPORT_URL = '/remark/report'
 /** 举报--回复url */
 export const REPLY_REPORT_URL = '/reply/report'
 /**-----------------------购物车-------------------------------- */
-/** 加入购物车 */
+/** 加入购物车url */
 export const CART_ADD_URL = '/cart/add'
-/** 获取购物车 */
+/** 获取购物车url */
 export const CART_USERID_URL = '/cart/userid'
-// ---------------------------- //
+/** 更新购物车url */
+export const CART_UPDATE_URL = '/cart/update'
+/** 删除购物车url */
+export const CART_DELETE_URL = '/cart/delete'
+/**------------------------------------------------------- */
+/** 分类页面数据url */
+export const MAIN_TYPES_URL = '/main/types'
+/** 用户浏览商品记录url */
+export const GOODS_BROWSING_HISTORY_URL = '/goods/browsing/history'
+/**-----------------------搜索-------------------------------- */
+/** 新增搜索历史url */
+export const SEARCH_ADD_HISTORY_URL = '/search/add/history'
+/** 获取搜索历史url */
+export const SEARCH_QUERY_HISTORY_URL = '/search/query/history'
+/** 删除单个搜索历史url */
+export const SEARCH_DELETE_HISTORY_URL = '/search/delete/history'
+/** 删除所有搜索历史url */
+export const SEARCH_DELETEALL_HISTORY_URL = '/search/deleteAll/history'
+/** 商品搜索url */
+export const SEARCH_GOODS_URL = '/search/goods'
+/** 关键字搜索商家url */
+export const SEARCH_STORE_KEY_URL = '/search/store/key'
+/** 根据商家搜索商品url */
+export const SEARCH_GOODS_STORE_URL = '/search/goods/store'
+/**-----------------------聊天-------------------------------- */
+/** 新增聊天url */
+export const CHAT_ADD_URL = '/chat/add'
+/** 查询和所有商家的聊天url */
+export const CHAT_QUERY_ALL_URL = '/chat/query/all'
+/** 查询和单个商家的聊天url */
+export const CHAT_QUERY_URL = '/chat/query'
+/** 清空聊天记录url */
+export const CHAT_CLEAR_URL = '/chat/clear'
+/**-----------------------地址-------------------------------- */
+/** 新增地址接口url */
+export const ADDRESS_ADD_URL = '/address/add'
+/** 查询所有地址接口url */
+export const ADDRESS_QUERY_ALL_URL = '/address/query/all'
+/** 查询单个地址接口url */
+export const ADDRESS_QUERY_URL = '/address/query'
+/** 修改地址接口url */
+export const ADDRESS_UPDATE_URL = '/address/update'
+/** 删除地址接口url */
+export const ADDRESS_DELETE_URL = '/address/delete'

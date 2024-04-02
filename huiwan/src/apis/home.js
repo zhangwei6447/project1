@@ -3,7 +3,7 @@
  * @description 首页接口
  */
 
-import { HOME_RECOMMEND_URL, HOME_TYPES_URL, LIST_TYPE_URL, RECOMMEND_TYPE_URL, RECOMMEND_DETAILTYPE_URL, GOODS_DETAIL_URL, QUERY_STORE_URL, UPLOAD_REMARKIMG_URL, REMARK_ADD_URL, QUERY_REMARK_URL, GOODS_WANT_URL, GOODS_CANCEL_WANT_URL } from "../config/urls.cfg";
+import { HOME_RECOMMEND_URL, HOME_TYPES_URL, LIST_TYPE_URL, RECOMMEND_TYPE_URL, RECOMMEND_DETAILTYPE_URL, GOODS_DETAIL_URL, QUERY_STORE_URL, UPLOAD_REMARKIMG_URL, REMARK_ADD_URL, QUERY_REMARK_URL, GOODS_WANT_URL, GOODS_CANCEL_WANT_URL, GOODS_BROWSING_HISTORY_URL } from "../config/urls.cfg";
 import { request } from "./ajax";
 
 
@@ -119,6 +119,18 @@ export function cancelCollectGoodsApi() {
     return request({
         url: GOODS_CANCEL_WANT_URL,
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+    })
+}
+
+/** 用户浏览商品记录Api */
+export function browsingHistoryApi(goods_id, user_id, date) {
+    return request({
+        url: GOODS_BROWSING_HISTORY_URL,
+        method: 'POST',
+        data: { goods_id, user_id, date },
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },

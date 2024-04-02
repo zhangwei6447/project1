@@ -4,7 +4,7 @@
         <div class="search" @click="router.push('/search')">搜一搜</div>
         <div class="types">
             <div class="item" v-for="it in types" :key="it.txt" @click="toType(it.txt)">
-                <img :src="`/yszh` + it.path" alt="">
+                <img :src="it.path" alt="">
                 <span>{{ it.txt }}</span>
             </div>
         </div>
@@ -214,7 +214,7 @@ function toType(goodsType) {
                 white-space: normal;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;
-                font-size: .7rem;
+                font-size: .65rem;
                 color: black;
                 line-height: 20px;
                 padding: 4px 10px;
@@ -245,13 +245,15 @@ function toType(goodsType) {
             }
 
             >.price {
-                display: block;
+                // display: flex;
+                // justify-content: space-between;
+                // align-items: center;
                 margin: 10px;
-                font-size: .8rem;
+                font-size: .65rem;
                 color: #FF5687;
 
                 span {
-                    font-size: 1.1rem;
+                    font-size: .9rem;
                 }
             }
         }
