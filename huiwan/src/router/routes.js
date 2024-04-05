@@ -23,8 +23,12 @@ const SearchResult = () => import('../pages/search/SearchResult.vue')
 const Service = () => import('../pages/service/index.vue')
 const ServiceSetting = () => import('../pages/service/setting.vue')
 const Me = () => import('../pages/me/index.vue')
-const Address=()=>import('../pages/me/address.vue')
-const Add_Address=()=>import('../pages/me/add_address.vue')
+const Address = () => import('../pages/me/address.vue')
+const Add_Address = () => import('../pages/me/add_address.vue')
+const Edit_Address = () => import('../pages/me/edit_address.vue')
+const Order = () => import('../pages/me/order.vue')
+const Pay = () => import('../pages/pay/index.vue')
+const ContinuePay=()=>import('../pages/order/continuePay.vue')
 /**  */
 export default [
     /**
@@ -51,4 +55,8 @@ export default [
     { path: '/mine', component: Me },
     { path: '/address', component: Address, meta: { layout: 'blank-layout' }, },
     { path: '/address/add', component: Add_Address, meta: { layout: 'blank-layout' }, },
+    { path: '/address/edit', component: Edit_Address, meta: { layout: 'blank-layout' }, },
+    { path: '/order', component: Order, meta: { layout: 'blank-layout' }, },
+    { path: '/pay', component: Pay, meta: { layout: 'blank-layout' }, },
+    { path: '/pay/continue', component: ContinuePay, meta: { layout: 'blank-layout' }, },
 ]

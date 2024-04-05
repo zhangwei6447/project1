@@ -3,23 +3,46 @@
         <!-- 头部导航 -->
         <header id="goods">
             <van-sticky :offset-top="0">
-                <van-nav-bar :title="pageName" left-arrow @click-left="router.go(-1)">
+                <van-nav-bar
+                    left-arrow
+                    @click-left="router.go(-1)"
+                >
                     <template #title>
                         <div class="nav">
                             <a href="#goods">
-                                <span class="maodian act" ref="btn_goods" @click="btnGoods()">商品</span>
+                                <span
+                                    class="maodian act"
+                                    ref="btn_goods"
+                                    @click="btnGoods()"
+                                    >商品</span
+                                >
                             </a>
                             <a href="#taolun">
-                                <span class="maodian" style="margin: 0 20px;" ref="btn_taolun"
-                                    @click="btnTaolun()">讨论</span>
+                                <span
+                                    class="maodian"
+                                    style="margin: 0 20px"
+                                    ref="btn_taolun"
+                                    @click="btnTaolun()"
+                                    >讨论</span
+                                >
                             </a>
                             <a href="#detail">
-                                <span class="maodian" ref="btn_detail" @click="btnDetail()">详情</span>
+                                <span
+                                    class="maodian"
+                                    ref="btn_detail"
+                                    @click="btnDetail()"
+                                    >详情</span
+                                >
                             </a>
                         </div>
                     </template>
                     <template #right>
-                        <van-icon name="share-o" size="26" color="#8B8B8B" @click="showShare = true" />
+                        <van-icon
+                            name="share-o"
+                            size="26"
+                            color="#8B8B8B"
+                            @click="showShare = true"
+                        />
                     </template>
                 </van-nav-bar>
             </van-sticky>
@@ -30,10 +53,12 @@
             <div class="banner">
                 <van-swipe>
                     <van-swipe-item v-for="(it, i) in goods_img" :key="it">
-                        <img :src="it || ''" alt="" @click="preImg(it, i)">
+                        <img :src="it || ''" alt="" @click="preImg(it, i)" />
                     </van-swipe-item>
                     <template #indicator="{ active, total }">
-                        <div class="custom-indicator">{{ (active + 1) || 0 }}/{{ total }}</div>
+                        <div class="custom-indicator">
+                            {{ active + 1 || 0 }}/{{ total }}
+                        </div>
                     </template>
                 </van-swipe>
             </div>
@@ -48,9 +73,7 @@
                     </s>
                 </div>
                 <div class="right">
-                    <span>
-                        售完即止
-                    </span>
+                    <span> 售完即止 </span>
                 </div>
             </div>
             <!-- 商品名称，排行榜 -->
@@ -60,17 +83,28 @@
                         {{ goods_name }}
                     </div>
                     <div class="right">
-                        <van-icon name="like-o" size="20" v-if="!is_collect_goods" @click="collectGoodsEvt()" />
-                        <van-icon name="like" size="20" @click="collectGoodsEvt()" v-if="is_collect_goods" />
+                        <van-icon
+                            name="like-o"
+                            size="20"
+                            v-if="!is_collect_goods"
+                            @click="collectGoodsEvt()"
+                        />
+                        <van-icon
+                            name="like"
+                            size="20"
+                            @click="collectGoodsEvt()"
+                            v-if="is_collect_goods"
+                        />
                         <div class="want">
-                            <span>{{ goods_want }}</span>人想要
+                            <span>{{ goods_want }}</span
+                            >人想要
                         </div>
                     </div>
                 </div>
-                <hr>
+                <hr />
                 <div class="btm">
                     <div class="l">
-                        <img src="../../image/icon_paihangbang.png" alt="">
+                        <img src="../../image/icon_paihangbang.png" alt="" />
                         <span>{{ goods_desc }}</span>
                     </div>
                     <van-icon name="arrow" color="#B6B6B6" size="16" />
@@ -83,9 +117,25 @@
                     <div>
                         <span>参数</span>
                         <div class="con">
-                            <div class="item" v-for="it in goods_params_show" :key="it">
-                                <div class="top" v-for="(val, key) in it" :key="val">{{ key }}</div>
-                                <div class="btm" v-for="(val, key) in it" :key="key">{{ val }}</div>
+                            <div
+                                class="item"
+                                v-for="it in goods_params_show"
+                                :key="it"
+                            >
+                                <div
+                                    class="top"
+                                    v-for="(val, key) in it"
+                                    :key="val"
+                                >
+                                    {{ key }}
+                                </div>
+                                <div
+                                    class="btm"
+                                    v-for="(val, key) in it"
+                                    :key="key"
+                                >
+                                    {{ val }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -101,12 +151,17 @@
                 <div class="store">
                     <div class="card">
                         <div class="left">
-                            <img :src="store_logo || ''" alt="">
+                            <img :src="store_logo || ''" alt="" />
                             <div class="it">
                                 <span>{{ store_name }}</span>
                                 <div>
                                     <span>综合评分</span>
-                                    <van-rate v-model="value" size="10" gutter="2" color="#fb619c" />
+                                    <van-rate
+                                        v-model="value"
+                                        size="10"
+                                        gutter="2"
+                                        color="#fb619c"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -117,20 +172,23 @@
                 </div>
                 <!-- 保障 -->
                 <div class="protect">
-                    <hr>
+                    <hr />
                     <div class="con" @click="showParams2()">
                         <div class="left">
                             <div class="top">
-                                <img src="../../image/icon_protect.png" alt="">
-                                <span>
-                                    支持7天无理由(拆封后不支持)
-                                </span>
+                                <img
+                                    src="../../image/icon_protect.png"
+                                    alt=""
+                                />
+                                <span> 支持7天无理由(拆封后不支持) </span>
                             </div>
                             <div class="btm">
-                                <van-icon name="info-o" color="#999" size="12" />
-                                <span>
-                                    商品及售后由商家提供
-                                </span>
+                                <van-icon
+                                    name="info-o"
+                                    color="#999"
+                                    size="12"
+                                />
+                                <span> 商品及售后由商家提供 </span>
                             </div>
                         </div>
                         <div class="right">
@@ -144,7 +202,8 @@
                 <div class="top">
                     <div class="left">
                         <span>晒图/讨论</span>
-                        <span>{{ remarkNum }}</span>条
+                        <span>{{ remarkNum }}</span
+                        >条
                     </div>
                     <div class="right" @click="showReleaseRemark = true">
                         <span>发精评</span>
@@ -153,24 +212,37 @@
                 </div>
                 <div class="center">
                     <div class="left">
-                        <img :src="('/apis' + remarkImageArr[0]) || ''" alt="">
+                        <img :src="'/apis' + remarkImageArr[0] || ''" alt="" />
                     </div>
                     <div class="right">
                         <div v-for="it in remarkImageArr.slice(1, 5)" :key="it">
-                            <img :src="('/apis' + it) || ''" alt="">
+                            <img :src="'/apis' + it || ''" alt="" />
                         </div>
                     </div>
                 </div>
                 <div class="btn">
-                    <span @click="router.push({ path: '/remark', query: { goods_id: goodsId } })">查看全部讨论</span>
+                    <span
+                        @click="
+                            router.push({
+                                path: '/remark',
+                                query: { goods_id: goodsId },
+                            })
+                        "
+                        >查看全部讨论</span
+                    >
                 </div>
             </div>
             <!-- 商品详情 -->
             <div class="goods_detail" id="detail">
                 <p>商品详情</p>
                 <div class="detail">
-                    <img :src="it || ''" alt="" v-for="(it, index) in goods_detail" :key="it"
-                        @click="detailImgEvt(it, index)">
+                    <img
+                        :src="it || ''"
+                        alt=""
+                        v-for="(it, index) in goods_detail"
+                        :key="it"
+                        @click="detailImgEvt(it, index)"
+                    />
                 </div>
             </div>
         </main>
@@ -189,14 +261,30 @@
                 <van-button color="#7232dd" plain>加入购物车</van-button>
             </div>
             <div>
-                <van-button color="linear-gradient(to right, #fb7299, #e94b74)">
+                <van-button
+                    color="linear-gradient(to right, #fb7299, #e94b74)"
+                    @click="
+                        router.push({
+                            path: '/pay',
+                            query: {
+                                goods_id: goodsInfo._id,
+                                num: 1,
+                                store_id: storeInfo._id,
+                            },
+                        })
+                    "
+                >
                     立即购买
                 </van-button>
             </div>
         </footer>
         <!-- 弹出层--商品参数 -->
         <div class="pop1">
-            <van-popup v-model:show="showBottom" position="bottom" :style="{ height: '80%' }">
+            <van-popup
+                v-model:show="showBottom"
+                position="bottom"
+                :style="{ height: '80%' }"
+            >
                 <div class="head">
                     <div></div>
                     <div>详细参数</div>
@@ -216,7 +304,11 @@
         </div>
         <!-- 弹出层--商品保障 -->
         <div class="pop2">
-            <van-popup v-model:show="showBottom2" position="bottom" :style="{ height: '40%' }">
+            <van-popup
+                v-model:show="showBottom2"
+                position="bottom"
+                :style="{ height: '40%' }"
+            >
                 <div class="head">
                     <div></div>
                     <div></div>
@@ -228,14 +320,14 @@
                         <van-icon name="passed" color="#fb619c" />
                         <span class="bold">关于运费</span>
                     </p>
-                    <p>单笔订单中可合并发货的商品实付总金额（含定金+尾款）满足包邮门槛即可包邮，包邮门槛会根据收货地址有所差异，具体运费以结算页为准。定金预售的商品运费将在补款发货时发生。</p>
+                    <p>
+                        单笔订单中可合并发货的商品实付总金额（含定金+尾款）满足包邮门槛即可包邮，包邮门槛会根据收货地址有所差异，具体运费以结算页为准。定金预售的商品运费将在补款发货时发生。
+                    </p>
                     <p>
                         <van-icon name="passed" color="#fb619c" />
                         <span class="bold">支持7天无理由（拆封后不支持）</span>
                     </p>
-                    <p>
-                        满足相应条件时，消费者可申请7天无理由退货
-                    </p>
+                    <p>满足相应条件时，消费者可申请7天无理由退货</p>
                 </div>
             </van-popup>
         </div>
@@ -245,46 +337,83 @@
         </div>
         <!-- 弹出层--图片预览 -->
         <div class="pop4">
-            <van-image-preview v-model:show="showImg" :images="images" :close-on-click-image="false"
-                :startPosition="index_img">
+            <van-image-preview
+                v-model:show="showImg"
+                :images="images"
+                :close-on-click-image="false"
+                :startPosition="index_img"
+            >
             </van-image-preview>
         </div>
         <!-- 弹出层--商品详情图片 -->
         <div class="pop5">
-            <van-image-preview v-model:show="showDetailImg" :images="detailImages" :close-on-click-image="false"
-                :startPosition="index_detail_img" :closeOnClickImage="true"></van-image-preview>
+            <van-image-preview
+                v-model:show="showDetailImg"
+                :images="detailImages"
+                :close-on-click-image="false"
+                :startPosition="index_detail_img"
+                :closeOnClickImage="true"
+            ></van-image-preview>
         </div>
         <!-- 弹出层--发布评论 -->
         <div class="pop6">
-            <van-popup v-model:show="showReleaseRemark" position="bottom" :style="{ height: '52%' }">
+            <van-popup
+                v-model:show="showReleaseRemark"
+                position="bottom"
+                :style="{ height: '52%' }"
+            >
                 <div class="head">
                     <span>发表评论</span>
                     <van-icon name="cross" color="#B6B6B6" size="20" />
                 </div>
                 <div class="goods">
-                    <img :src="goods_img[0]" alt="">
+                    <img :src="goods_img[0]" alt="" />
                     <div>
                         <span>{{ goods_name }}</span>
-                        <p>品牌<span>{{ store_name }}</span></p>
+                        <p>
+                            品牌<span>{{ store_name }}</span>
+                        </p>
                     </div>
                 </div>
                 <div class="input">
                     <van-cell-group inset>
-                        <van-field v-model="message" rows="2" autosize type="textarea" maxlength="1000"
-                            placeholder="快与同好分享你的感受及购物心得吧 ~" show-word-limit @input="textChangeEvt()" />
+                        <van-field
+                            v-model="message"
+                            rows="2"
+                            autosize
+                            type="textarea"
+                            maxlength="1000"
+                            placeholder="快与同好分享你的感受及购物心得吧 ~"
+                            show-word-limit
+                            @input="textChangeEvt()"
+                        />
                     </van-cell-group>
                 </div>
                 <div class="pic">
-                    <van-uploader v-model="fileList" multiple max-count="9" upload-text="最多上传9张" />
-                    <span v-if="showTxt">发布40字以上趣味/专业评论 or 3张以上相关高清美图，就有机会成为精选✧(≖ ◡ ≖)</span>
+                    <van-uploader
+                        v-model="fileList"
+                        multiple
+                        max-count="9"
+                        upload-text="最多上传9张"
+                    />
+                    <span v-if="showTxt"
+                        >发布40字以上趣味/专业评论 or
+                        3张以上相关高清美图，就有机会成为精选✧(≖ ◡ ≖)</span
+                    >
                 </div>
                 <div class="submit">
                     <div class="left">
-                        <van-checkbox v-model="check_dongtai" checked-color="#fb619c">同步到动态</van-checkbox>
+                        <van-checkbox
+                            v-model="check_dongtai"
+                            checked-color="#fb619c"
+                            >同步到动态</van-checkbox
+                        >
                     </div>
                     <div class="right">
                         <span>友善讨论 社区留香</span>
-                        <div class="send" @click="sendRemarkEt()" ref="isSend">发送</div>
+                        <div class="send" @click="sendRemarkEt()" ref="isSend">
+                            发送
+                        </div>
                     </div>
                 </div>
             </van-popup>
@@ -293,150 +422,165 @@
 </template>
 <script setup>
 // ===========================引入============================ //
-import { useRouter, useRoute } from 'vue-router';
-import { computed, ref, watch } from 'vue'
-import { getGoodsDetailApi, queryStoreApi, uploadRemarkImgApi, addRemarkApi, cancelCollectGoodsApi, collectGoodsApi, queryRemarkApi, browsingHistoryApi } from '../../apis/home.js';
-import { scaleImage } from '../../utils/index.js';
-import { useCommonStore } from '../../store';
+import { useRouter, useRoute } from "vue-router";
+import { computed, ref, watch } from "vue";
+import {
+    getGoodsDetailApi,
+    queryStoreApi,
+    uploadRemarkImgApi,
+    addRemarkApi,
+    cancelCollectGoodsApi,
+    collectGoodsApi,
+    queryRemarkApi,
+    browsingHistoryApi,
+} from "../../apis/home.js";
+import { scaleImage } from "../../utils/index.js";
+import { useCommonStore } from "../../store";
 import { showToast } from "vant";
-import { queryUserInfoApi } from '../../apis/userApi.js';
-import { cartAddApi, getCartApi } from '../../apis/cart.js';
-import { chatAddApi } from '../../apis/chat.js';
+import { queryUserInfoApi } from "../../apis/userApi.js";
+import { cartAddApi, getCartApi } from "../../apis/cart.js";
+import { chatAddApi } from "../../apis/chat.js";
 // ===========================变量============================ //
-const router = useRouter()
-const route = useRoute()
-const store = useCommonStore()
-const pageName = ref()
+const router = useRouter();
+const route = useRoute();
+const store = useCommonStore();
 // 商品id
-const goodsId = ref()
+const goodsId = ref();
 // 商品信息
-const goodsInfo = ref()
+const goodsInfo = ref();
 // 商品图片
-const goods_img = ref()
+const goods_img = ref();
 // 商品价格
-const goods_price = ref()
+const goods_price = ref();
 // 商品原始价格
-const goods_old_price = ref()
+const goods_old_price = ref();
 // 商品参数
-const goods_params = ref()
+const goods_params = ref();
 // 商品参数展示
-const goods_params_show = ref()
+const goods_params_show = ref();
 // 商品名称
-const goods_name = ref()
+const goods_name = ref();
 // 商品想要
-const goods_want = ref()
+const goods_want = ref();
 // 商品描述
-const goods_desc = ref()
+const goods_desc = ref();
 // 商品详情图片
-const goods_detail = ref()
+const goods_detail = ref();
 // 商家信息
-const storeInfo = ref()
+const storeInfo = ref();
 // 商家名称
-const store_name = ref()
+const store_name = ref();
 // 商家logo
-const store_logo = ref()
+const store_logo = ref();
 // 弹出--参数
-const showBottom = ref()
+const showBottom = ref();
 // 弹出--保障
-const showBottom2 = ref()
+const showBottom2 = ref();
 // 评分
 const value = ref(4);
 // 头部切换
-const btn_goods = ref()
-const btn_taolun = ref()
-const btn_detail = ref()
+const btn_goods = ref();
+const btn_taolun = ref();
+const btn_detail = ref();
 // 分享
 const showShare = ref(false);
 const options = [
     [
-        { name: '微信', icon: 'wechat' },
-        { name: '朋友圈', icon: 'wechat-moments' },
-        { name: '微博', icon: 'weibo' },
-        { name: 'QQ', icon: 'qq' },
+        { name: "微信", icon: "wechat" },
+        { name: "朋友圈", icon: "wechat-moments" },
+        { name: "微博", icon: "weibo" },
+        { name: "QQ", icon: "qq" },
     ],
     [
-        { name: '复制链接', icon: 'link' },
-        { name: '分享海报', icon: 'poster' },
-        { name: '二维码', icon: 'qrcode' },
-        { name: '小程序码', icon: 'weapp-qrcode' },
+        { name: "复制链接", icon: "link" },
+        { name: "分享海报", icon: "poster" },
+        { name: "二维码", icon: "qrcode" },
+        { name: "小程序码", icon: "weapp-qrcode" },
     ],
 ];
 /** 图片预览 */
 // 图片显示
-const showImg = ref(false)
+const showImg = ref(false);
 // 原始图片数组
-const org_images = ref([])
+const org_images = ref([]);
 // 用于显示的图片数组
-const images = ref([])
+const images = ref([]);
 // 图片的开始索引
-const index_img = ref()
+const index_img = ref();
 
 /** 商品详情图片预览 */
 // 图片显示
-const showDetailImg = ref(false)
+const showDetailImg = ref(false);
 // 原始详情图片数组
-const org_detail_images = ref([])
+const org_detail_images = ref([]);
 // 用于显示的详情图片数组
-const detailImages = ref([])
+const detailImages = ref([]);
 // 详情图片的开始索引
-const index_detail_img = ref()
+const index_detail_img = ref();
 
 /** 发布评论 */
 // 弹出显示
-const showReleaseRemark = ref(false)
+const showReleaseRemark = ref(false);
 // 上传图片数组
-const fileList = ref()
+const fileList = ref();
 // 文本信息
-const message = ref()
+const message = ref();
 // 提示文本
 const showTxt = computed(() => {
-    return fileList.value == null
-})
+    return fileList.value == null;
+});
 // 是否同步到动态--待实现
-const check_dongtai = ref(true)
+const check_dongtai = ref(true);
 // 发送按钮是否可用
-const is_sendmsg = ref(false)
+const is_sendmsg = ref(false);
 // 发送按钮节点
-const isSend = ref()
+const isSend = ref();
 // 评论区图片数组
-const remarkImageArr = ref([])
+const remarkImageArr = ref([]);
 // 评论条数
-const remarkNum = ref()
+const remarkNum = ref();
 
 // 是否收藏该商品
-const is_collect_goods = ref(false)
+const is_collect_goods = ref(false);
 
 // 购物车信息
-const cartInfo = ref()
+const cartInfo = ref();
 // 购物车商品数量
-const cart_goods_num = ref()
+const cart_goods_num = ref();
 // ===========================方法============================ //
 /** 浏览商品记录 */
 async function browingHistoryEvt() {
-    let res = await browsingHistoryApi(route.query.goods_id, store.userInfo._id, Date.now())
+    let res = await browsingHistoryApi(
+        route.query.goods_id,
+        store.userInfo._id,
+        Date.now()
+    );
 }
-browingHistoryEvt()
+browingHistoryEvt();
 /** 跳转到客服页面 */
 async function toServiceEvt() {
-    router.push({ path: '/service', query: { store_id: storeInfo.value.store_id } })
+    router.push({
+        path: "/service",
+        query: { store_id: storeInfo.value.store_id },
+    });
     let obj = {
         user_id: store.userInfo._id,
-        store_id: storeInfo.value._id
-    }
-    let res = await chatAddApi(obj)
+        store_id: storeInfo.value._id,
+    };
+    let res = await chatAddApi(obj);
 }
 /** 查询购物车 */
 async function queryCartEvt() {
-    let res = await getCartApi(store.user_id)
-    if (res.code !== 200) return
-    cartInfo.value = res.data
-    let num = 0
-    cartInfo.value.forEach(it => {
-        num += it.goods_num
-    })
-    cart_goods_num.value = num
+    let res = await getCartApi(store.user_id);
+    if (res.code !== 200) return;
+    cartInfo.value = res.data;
+    let num = 0;
+    cartInfo.value.forEach((it) => {
+        num += it.goods_num;
+    });
+    cart_goods_num.value = num;
 }
-queryCartEvt()
+queryCartEvt();
 /** 加入购物车 */
 async function addCartEvt() {
     let obj = {
@@ -445,75 +589,75 @@ async function addCartEvt() {
         goods_name: goodsInfo.value.name,
         goods_num: 1,
         goods_price: goodsInfo.value.price,
-    }
-    let res = await cartAddApi(obj)
+    };
+    let res = await cartAddApi(obj);
     if (res.code === 200) {
-        showToast('加车成功')
-        queryCartEvt()
+        showToast("加车成功");
+        queryCartEvt();
     }
 }
 /** 改变评论图片 */
 watch(
     () => route.query.goods_id,
     async function () {
-        store.goods_id = route.query.goods_id
-        let d2 = await queryRemarkApi()
+        store.goods_id = route.query.goods_id;
+        let d2 = await queryRemarkApi();
         if (d2.code === 200) {
-            remarkNum.value = d2.remark.length
-            d2.remark.forEach(it => {
+            remarkNum.value = d2.remark.length;
+            d2.remark.forEach((it) => {
                 if (it.content[0].img.length) {
                     for (let i = 0; i < it.content[0].img.length; i++) {
-                        remarkImageArr.value.push(it.content[0].img[i].path)
+                        remarkImageArr.value.push(it.content[0].img[i].path);
                     }
                 }
-            })
+            });
         }
     },
     {
-        immediate: true
+        immediate: true,
     }
-)
+);
 // 查询用户信息
 async function queryUserInfo() {
-    let res = await queryUserInfoApi()
-    store.user_id = store.userInfo._id
+    let res = await queryUserInfoApi();
+    store.user_id = store.userInfo._id;
     if (res.code === 200) {
-        let user_goods_collect = res.data.goods_collect || []
-        is_collect_goods.value = user_goods_collect.some(it => {
-            return it === goodsId.value
-        })
+        let user_goods_collect = res.data.goods_collect || [];
+        is_collect_goods.value = user_goods_collect.some((it) => {
+            return it === goodsId.value;
+        });
     }
 }
-queryUserInfo()
+queryUserInfo();
 // 收藏商品
 async function collectGoodsEvt() {
     // 收藏了该商品
     if (is_collect_goods.value) {
-        let res = await cancelCollectGoodsApi()
-        showToast('已取消收藏')
-        is_collect_goods.value = false
-        let d = await getGoodsDetailApi(goodsId.value)
+        let res = await cancelCollectGoodsApi();
+        showToast("已取消收藏");
+        is_collect_goods.value = false;
+        let d = await getGoodsDetailApi(goodsId.value);
         if (d.code === 200) {
-            goods_want.value = d.data.want.length || 0
+            goods_want.value = d.data.want.length || 0;
         }
     } else {
-        let res = await collectGoodsApi()
-        showToast('已加入收藏')
-        is_collect_goods.value = true
-        let d = await getGoodsDetailApi(goodsId.value)
+        let res = await collectGoodsApi();
+        showToast("已加入收藏");
+        is_collect_goods.value = true;
+        let d = await getGoodsDetailApi(goodsId.value);
         if (d.code === 200) {
-            goods_want.value = d.data.want.length || 0
+            goods_want.value = d.data.want.length || 0;
         }
     }
 }
 // 发送按钮是否可用
 function textChangeEvt() {
-    if (message.value.trim() !== '' || message.value !== '') {
-        isSend.value.classList.add('act')
-        is_sendmsg.value = true
+    if (message.value.trim() !== "" || message.value !== "") {
+        isSend.value.classList.add("act");
+        is_sendmsg.value = true;
     } else {
-        isSend.value.classList.remove('act')
-        is_sendmsg.value = false
+        isSend.value.classList.remove("act");
+        is_sendmsg.value = false;
     }
 }
 /** 发布评论 */
@@ -521,155 +665,156 @@ async function sendRemarkEt() {
     if (is_sendmsg.value === true) {
         /** 缓存信息 */
         // 缓存用户id
-        store.user_id = store.userInfo._id
+        store.user_id = store.userInfo._id;
         // 缓存商家id
-        store.store_id = storeInfo.value.store_id
+        store.store_id = storeInfo.value.store_id;
         // 缓存商品id
-        store.goods_id = goodsId.value
+        store.goods_id = goodsId.value;
 
         // 遍历上传的图片文件并添加到数组里面
-        let imgArr = []
+        let imgArr = [];
         if (fileList.value) {
             for (let i = 0; i < fileList.value.length; i++) {
-                let name = fileList.value[i].file.lastModified
-                let d = await scaleImage(fileList.value[i].file)
-                let res = await uploadRemarkImgApi(d, name)
-                imgArr.push(res)
+                let name = fileList.value[i].file.lastModified;
+                let d = await scaleImage(fileList.value[i].file);
+                let res = await uploadRemarkImgApi(d, name);
+                imgArr.push(res);
             }
         }
         // 新增评论
-        addRemarkApi({ date: Date.now(), text: message.value || '', img: imgArr || [], like: [] }).then(d => {
-            showToast('你的评论已发表~')
-            message.value = ''
-            fileList.value = []
-            showReleaseRemark.value = false
-        })
+        addRemarkApi({
+            date: Date.now(),
+            text: message.value || "",
+            img: imgArr || [],
+            like: [],
+        }).then((d) => {
+            showToast("你的评论已发表~");
+            message.value = "";
+            fileList.value = [];
+            showReleaseRemark.value = false;
+        });
     } else {
-        return
+        return;
     }
-
 }
 
 // 图片预览
 function preImg(item, index) {
-    let tar_arr = []
+    let tar_arr = [];
     for (let i = index; i < org_images.value.length; i++) {
-        tar_arr.push(org_images.value[i])
+        tar_arr.push(org_images.value[i]);
     }
     for (let j = 0; j < index; j++) {
-        tar_arr.push(org_images.value[j])
+        tar_arr.push(org_images.value[j]);
     }
-    images.value = JSON.parse(JSON.stringify(tar_arr))
-    index_img.value = index
-    showImg.value = true
+    images.value = JSON.parse(JSON.stringify(tar_arr));
+    index_img.value = index;
+    showImg.value = true;
 }
 // 详情图片预览
 function detailImgEvt(item, index) {
-    let tar_arr = []
+    let tar_arr = [];
     for (let i = index; i < org_detail_images.value.length; i++) {
-        tar_arr.push(org_detail_images.value[i])
+        tar_arr.push(org_detail_images.value[i]);
     }
     for (let j = 0; j < index; j++) {
-        tar_arr.push(org_detail_images.value[j])
+        tar_arr.push(org_detail_images.value[j]);
     }
-    detailImages.value = JSON.parse(JSON.stringify(tar_arr))
-    index_detail_img.value = index
-    showDetailImg.value = true
+    detailImages.value = JSON.parse(JSON.stringify(tar_arr));
+    index_detail_img.value = index;
+    showDetailImg.value = true;
 }
 // 弹出--参数
 function showParams() {
-    showBottom.value = true
+    showBottom.value = true;
 }
 // 弹出--保障
 function showParams2() {
-    showBottom2.value = true
+    showBottom2.value = true;
 }
 
 /** 获取商品id */
 watch(
     () => route.query.goods_id,
     function () {
-
-        goodsId.value = route.query.goods_id
-        getGoodsDetailApi(goodsId.value).then(d => {
-            goodsInfo.value = d.data
+        goodsId.value = route.query.goods_id;
+        getGoodsDetailApi(goodsId.value).then((d) => {
+            goodsInfo.value = d.data;
             // 商品图片
-            goods_img.value = goodsInfo.value.img
-            images.value = goods_img.value
-            org_images.value = goods_img.value
+            goods_img.value = goodsInfo.value.img || "";
+            images.value = goods_img.value;
+            org_images.value = goods_img.value;
             // 商品价格
-            goods_price.value = goodsInfo.value.price
+            goods_price.value = goodsInfo.value.price;
             // 商品原价
-            if (goodsInfo.value.old_price === '暂无') {
-                goods_old_price.value = ''
+            if (goodsInfo.value.old_price === "暂无") {
+                goods_old_price.value = "";
             } else {
-                goods_old_price.value = goodsInfo.value.old_price
+                goods_old_price.value = goodsInfo.value.old_price;
             }
             // 商品参数
-            goods_params.value = goodsInfo.value.params
-            goods_params_show.value = JSON.parse(JSON.stringify(goods_params.value.slice(0, 4)))
+            goods_params.value = goodsInfo.value.params;
+            goods_params_show.value = JSON.parse(
+                JSON.stringify(goods_params.value.slice(0, 4))
+            );
             // 商品名称
-            goods_name.value = goodsInfo.value.name
+            goods_name.value = goodsInfo.value.name;
             // 商品想要
-            goods_want.value = goodsInfo.value.want.length || 0
+            goods_want.value = goodsInfo.value.want.length || 0;
             // 商品描述
-            goods_desc.value = goodsInfo.value.the_charts_des
+            goods_desc.value = goodsInfo.value.the_charts_des;
             // 商品详情
-            goods_detail.value = goodsInfo.value.details
-            org_detail_images.value = goods_detail.value
-            detailImages.value = goods_detail.value
+            goods_detail.value = goodsInfo.value.details;
+            org_detail_images.value = goods_detail.value;
+            detailImages.value = goods_detail.value;
             // 商家信息
-            queryStoreApi(goodsInfo.value.store_id).then(d1 => {
+            queryStoreApi(goodsInfo.value.store_id).then((d1) => {
                 if (d1.code === 200) {
-                    storeInfo.value = d1.data
+                    storeInfo.value = d1.data;
                     // 商家名称
-                    store_name.value = storeInfo.value.store_name
+                    store_name.value = storeInfo.value.store_name;
                     // 商家logo
-                    store_logo.value = storeInfo.value.store_logo
+                    store_logo.value = storeInfo.value.store_logo;
 
                     /** 缓存信息 */
                     // 缓存用户id
-                    store.user_id = store.userInfo._id
+                    store.user_id = store.userInfo._id;
                     // 缓存商家id
-                    store.store_id = storeInfo.value.store_id
+                    store.store_id = storeInfo.value.store_id;
                     // 缓存商品id
-                    store.goods_id = goodsId.value
+                    store.goods_id = goodsId.value;
                 }
-
-            })
-        })
+            });
+        });
         // 查询评论信息
-
     },
     {
         immediate: true,
     }
-)
+);
 // 头部样式切换
 function btnGoods() {
-    btn_goods.value.classList.remove('act')
-    btn_taolun.value.classList.remove('act')
-    btn_detail.value.classList.remove('act')
-    btn_goods.value.classList.add('act')
-
+    btn_goods.value.classList.remove("act");
+    btn_taolun.value.classList.remove("act");
+    btn_detail.value.classList.remove("act");
+    btn_goods.value.classList.add("act");
 }
 function btnTaolun() {
-    btn_goods.value.classList.remove('act')
-    btn_taolun.value.classList.remove('act')
-    btn_detail.value.classList.remove('act')
-    btn_taolun.value.classList.add('act')
+    btn_goods.value.classList.remove("act");
+    btn_taolun.value.classList.remove("act");
+    btn_detail.value.classList.remove("act");
+    btn_taolun.value.classList.add("act");
 }
 function btnDetail() {
-    btn_goods.value.classList.remove('act')
-    btn_taolun.value.classList.remove('act')
-    btn_detail.value.classList.remove('act')
-    btn_detail.value.classList.add('act')
+    btn_goods.value.classList.remove("act");
+    btn_taolun.value.classList.remove("act");
+    btn_detail.value.classList.remove("act");
+    btn_detail.value.classList.add("act");
 }
 // 测试
-
 </script>
 <style scoped lang="less">
-@import '../../style/common.less';
+@import "../../style/common.less";
 
 .detail-box {
     height: 100vh;
@@ -687,15 +832,15 @@ function btnDetail() {
         }
 
         .maodian {
-            font-size: .8rem;
-            color: #B6B6B6;
+            font-size: 0.8rem;
+            color: #b6b6b6;
             font-weight: 400;
         }
 
         .act {
             font-weight: 600;
             color: black;
-            text-decoration: underline #FF5687;
+            text-decoration: underline #ff5687;
         }
     }
 
@@ -724,14 +869,13 @@ function btnDetail() {
                     position: absolute;
                     right: 20px;
                     bottom: 15px;
-                    font-size: .7rem;
+                    font-size: 0.7rem;
                     background: rgba(0, 0, 0, 0.3);
                     border-radius: 10px;
                     padding: 1px 10px;
                     color: #fff;
                 }
             }
-
         }
 
         /** 商品价格 */
@@ -750,7 +894,7 @@ function btnDetail() {
 
             .left {
                 font-size: 14px;
-                color: #FF5687;
+                color: #ff5687;
 
                 .t {
                     span:nth-child(1) {
@@ -767,7 +911,7 @@ function btnDetail() {
             .right {
                 font-size: 14px;
                 font-weight: 500;
-                color: #FF5687;
+                color: #ff5687;
             }
         }
 
@@ -846,7 +990,6 @@ function btnDetail() {
                         margin-top: 2px;
                     }
                 }
-
             }
         }
 
@@ -862,7 +1005,7 @@ function btnDetail() {
             .params {
                 display: flex;
                 padding: 10px 12px;
-                font-size: .6rem;
+                font-size: 0.6rem;
                 color: #999;
                 align-items: center;
                 justify-content: space-between;
@@ -875,7 +1018,6 @@ function btnDetail() {
                         display: inline-block;
                         width: 40px;
                         margin-right: 2px;
-
                     }
 
                     .con {
@@ -914,9 +1056,8 @@ function btnDetail() {
                     line-height: 40px;
                     display: inline-block;
                     width: 40px;
-                    font-size: .6rem;
+                    font-size: 0.6rem;
                     color: #999;
-
                 }
 
                 span:nth-child(2) {
@@ -1013,7 +1154,6 @@ function btnDetail() {
                     align-items: center;
 
                     .left {
-
                         .top {
                             display: flex;
 
@@ -1032,7 +1172,6 @@ function btnDetail() {
                         }
 
                         .btm {
-
                             span {
                                 font-size: 12px;
                                 color: #999;
@@ -1123,7 +1262,7 @@ function btnDetail() {
                             width: 100%;
                             height: 100%;
                             border-radius: 10px;
-                            background: rgba(0, 0, 0, .3);
+                            background: rgba(0, 0, 0, 0.3);
                             position: absolute;
                             left: 0;
                             top: 0;
@@ -1141,7 +1280,6 @@ function btnDetail() {
                                 margin-top: 4px;
                                 font-size: 14px;
                                 color: white;
-
                             }
                         }
                     }
@@ -1157,7 +1295,7 @@ function btnDetail() {
                     display: block;
                     font-size: 14px;
                     color: #717171;
-                    border: 1px solid #B6B6B6;
+                    border: 1px solid #b6b6b6;
                     width: 28vw;
                     padding: 2px 4px;
                     border-radius: 20px;
@@ -1178,7 +1316,6 @@ function btnDetail() {
                 font-size: 14px;
                 font-weight: 700;
                 color: #212121;
-
             }
 
             .detail {
@@ -1243,10 +1380,8 @@ function btnDetail() {
                 border-radius: 40px;
             }
         }
-
     }
 }
-
 
 /** 头部 */
 ::v-deep(.van-nav-bar__content) {
@@ -1255,11 +1390,11 @@ function btnDetail() {
 
 ::v-deep(.van-icon-arrow-left:before) {
     font-size: 1rem;
-    color: #8B8B8B;
+    color: #8b8b8b;
 }
 
 .van-nav-bar__title {
-    font-size: .9rem;
+    font-size: 0.9rem;
     font-weight: normal;
 }
 
@@ -1272,7 +1407,6 @@ function btnDetail() {
         overflow-y: scroll;
 
         .head {
-
             display: flex;
             justify-content: space-between;
 
@@ -1286,7 +1420,6 @@ function btnDetail() {
         .main {
             margin-top: 40px;
 
-
             .item {
                 display: flex;
                 margin-bottom: 20px;
@@ -1299,7 +1432,6 @@ function btnDetail() {
                     text-overflow: ellipsis;
                     font-size: 12px;
                     color: #999;
-
                 }
 
                 .value {
@@ -1317,7 +1449,6 @@ function btnDetail() {
 
 /** 弹出--保障 */
 .pop2 {
-
     .van-popup--bottom[data-v-23c47698] {
         width: 100vw;
         border-radius: 8px 8px 0 0;
@@ -1368,7 +1499,7 @@ function btnDetail() {
             justify-content: space-between;
 
             span {
-                font-size: .85rem;
+                font-size: 0.85rem;
             }
         }
 
@@ -1382,7 +1513,7 @@ function btnDetail() {
                 border-radius: 8px 0 0 8px;
                 width: 2.4rem;
                 height: 2.4rem;
-                border-radius: .2rem;
+                border-radius: 0.2rem;
             }
 
             div {
@@ -1391,7 +1522,7 @@ function btnDetail() {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                font-size: .7rem;
+                font-size: 0.7rem;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
@@ -1400,7 +1531,6 @@ function btnDetail() {
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
-
                 }
 
                 p {
@@ -1417,7 +1547,6 @@ function btnDetail() {
             margin: 15px 0;
 
             .van-cell-group--inset {
-
                 margin: 0;
 
                 .van-field {
@@ -1437,11 +1566,8 @@ function btnDetail() {
                 // height: 4.2rem;
 
                 .van-uploader__wrapper {
-
                     .van-uploader__preview {
-
                         .van-image van-uploader__preview-image {
-
                             img {
                                 width: 4.2rem;
                                 height: 4.2rem;
@@ -1451,12 +1577,11 @@ function btnDetail() {
                 }
             }
 
-
             span {
                 // position: absolute;
                 margin-top: 4px;
                 margin-left: 10px;
-                font-size: .64rem;
+                font-size: 0.64rem;
                 color: #bbb;
             }
         }
@@ -1475,7 +1600,7 @@ function btnDetail() {
 
                 span {
                     color: #696868;
-                    font-size: .6rem;
+                    font-size: 0.6rem;
                 }
             }
 
@@ -1484,19 +1609,19 @@ function btnDetail() {
                 align-items: center;
 
                 span {
-                    font-size: .8rem;
+                    font-size: 0.8rem;
                     color: #bbb;
                 }
 
                 div {
                     color: white;
-                    background-color: rgba(251, 97, 156, .5);
+                    background-color: rgba(251, 97, 156, 0.5);
                     margin-left: 15px;
                     width: 20vw;
                     height: 32px;
                     line-height: 32px;
                     text-align: center;
-                    font-size: .8rem;
+                    font-size: 0.8rem;
                     border-radius: 15px;
 
                     &.act {

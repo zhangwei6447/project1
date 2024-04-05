@@ -3,7 +3,7 @@
         <!-- 头部 -->
         <header>
             <van-sticky :offset-top="0">
-                <van-nav-bar :title="pageName" left-arrow @click-left="router.go(-1)">
+                <van-nav-bar left-arrow @click-left="router.go(-1)">
                     <template #title>
                         <div class="nav" style="width: 100%;background-color: red;">
                             <van-search v-model="value" placeholder="商品、品牌、IP名" />

@@ -28,6 +28,8 @@ export const GOODS_DETAIL_URL = '/goods/detail'
 export const GOODS_DETAIL2_URL = '/goods/detail2'
 /** 查询商家url */
 export const QUERY_STORE_URL = '/query/store'
+/** 查询商家--通过_id url */
+export const QUERY_STORE2_URL = '/query/store2'
 /** 查询用户信息接口--请求头url */
 export const QUERY_USER_URL = '/query/user'
 /** 查询用户信息接口--请求体url */
@@ -106,3 +108,16 @@ export const ADDRESS_QUERY_URL = '/address/query'
 export const ADDRESS_UPDATE_URL = '/address/update'
 /** 删除地址接口url */
 export const ADDRESS_DELETE_URL = '/address/delete'
+/**-----------------------订单-------------------------------- */
+/** 创建订单url */
+export const ORDER_ADD_URL = '/order/add'
+/** 订单支付url */
+export const ORDER_PAY_URL = '/order/pay'
+/** 订单确认收货url */
+export const ORDER_RECEIVING_GOODS_URL = '/order/receiving/goods'
+/** 查询订单url */
+export const ORDER_QUERY_URL = '/order/query'
+/** 订单修改url */
+export const ORDER_UPDATE_URL = 'order/update'
+/** 取消订单url */
+export const ORDER_CANCEL_URL='/order/cancel'

@@ -3,7 +3,7 @@
  * @description 首页接口
  */
 
-import { HOME_RECOMMEND_URL, HOME_TYPES_URL, LIST_TYPE_URL, RECOMMEND_TYPE_URL, RECOMMEND_DETAILTYPE_URL, GOODS_DETAIL_URL, QUERY_STORE_URL, UPLOAD_REMARKIMG_URL, REMARK_ADD_URL, QUERY_REMARK_URL, GOODS_WANT_URL, GOODS_CANCEL_WANT_URL, GOODS_BROWSING_HISTORY_URL } from "../config/urls.cfg";
+import { HOME_RECOMMEND_URL, HOME_TYPES_URL, LIST_TYPE_URL, RECOMMEND_TYPE_URL, RECOMMEND_DETAILTYPE_URL, GOODS_DETAIL_URL, QUERY_STORE_URL, UPLOAD_REMARKIMG_URL, REMARK_ADD_URL, QUERY_REMARK_URL, GOODS_WANT_URL, GOODS_CANCEL_WANT_URL, GOODS_BROWSING_HISTORY_URL, QUERY_STORE2_URL } from "../config/urls.cfg";
 import { request } from "./ajax";
 
 
@@ -65,6 +65,18 @@ export function queryStoreApi(store_id) {
         url: QUERY_STORE_URL,
         method: 'GET',
         params: { store_id }
+    })
+}
+
+/** 查询商家--通过_id Api */
+export function queryStore2Api(_id) {
+    return request({
+        url: QUERY_STORE2_URL,
+        method: 'POST',
+        data: { _id },
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
     })
 }
 

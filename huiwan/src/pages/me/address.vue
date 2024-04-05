@@ -3,7 +3,7 @@
         <!-- 头部导航 -->
         <header id="goods">
             <van-sticky :offset-top="0">
-                <van-nav-bar :title="pageName" left-arrow @click-left="router.push('/mine')">
+                <van-nav-bar left-arrow @click-left="router.push('/mine')">
                     <template #title>
                         <span style="font-size: .7rem;font-weight: normal;">地址管理</span>
                     </template>
@@ -24,7 +24,8 @@
                 </div>
                 <div class="center">
                     <span>{{ it.detail_address }}</span>
-                    <van-icon name="edit" style="margin-left: 20px;color: #fb619c;" />
+                    <van-icon @click="router.push({ path: '/address/edit', query: { _id: it._id } })" name="edit"
+                        style="margin-left: 20px;color: #fb619c;" />
                 </div>
                 <div class="btm">
                     <span>{{ it.consignee }}</span>
@@ -43,7 +44,7 @@
                 </div>
                 <div class="center">
                     <span>{{ item.detail_address }}</span>
-                    <van-icon name="edit" style="margin-left: 20px;color: #fb619c;" />
+                    <van-icon @click="router.push({ path: '/address/edit', query: { _id: item._id } })" name="edit" style="margin-left: 20px;color: #fb619c;" />
                 </div>
                 <div class="btm">
                     <span>{{ item.consignee }}</span>
@@ -71,7 +72,7 @@ const store = useCommonStore()
 // 地址信息
 const addressInfo = ref()
 // 
-const first_Info=ref()
+const first_Info = ref()
 
 // ===========================方法============================ //
 
@@ -79,19 +80,19 @@ async function queryAddressInfoEvt() {
     let res = await addressQueryAllApi(store.userInfo._id)
     if (res.code !== 200) return
     addressInfo.value = res.data
-    addressInfo.value.forEach((it,i)=>{
-        if(it.is_default===true){
-            addressInfo.value.splice(i,1)
+    addressInfo.value.forEach((it, i) => {
+        if (it.is_default === true) {
+            addressInfo.value.splice(i, 1)
         }
     })
-    addressInfo.value.sort((a,b)=>b.date-a.date)
+    addressInfo.value.sort((a, b) => b.date - a.date)
 }
 queryAddressInfoEvt()
 // 
 async function queryAddressInfoEvt2() {
     let res = await addressQueryAllApi(store.userInfo._id)
     if (res.code !== 200) return
-    first_Info.value=res.data.filter(it=>it.is_default===true)
+    first_Info.value = res.data.filter(it => it.is_default === true)
 }
 queryAddressInfoEvt2()
 

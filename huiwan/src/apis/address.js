@@ -50,11 +50,11 @@ export function addressUpdateApi(data) {
 }
 
 /** 删除地址Api */
-export function addressDeleteApi(_id) {
+export function addressDeleteApi(_id, user_id, is_default) {
     return request({
         url: ADDRESS_DELETE_URL,
         method: 'POST',
-        data: { _id },
+        data: { _id, user_id,is_default },
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },

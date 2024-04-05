@@ -3,7 +3,7 @@
         <!-- 头部导航 -->
         <header id="goods">
             <van-sticky :offset-top="0">
-                <van-nav-bar :title="pageName" left-arrow @click-left="router.go(-1)">
+                <van-nav-bar left-arrow @click-left="router.go(-1)">
                     <template #title>
                         <div class="nav">
                             <span>商家</span>

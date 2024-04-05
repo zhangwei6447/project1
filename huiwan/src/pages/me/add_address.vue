@@ -3,7 +3,7 @@
         <!-- 头部导航 -->
         <header id="goods">
             <van-sticky :offset-top="0">
-                <van-nav-bar :title="pageName" left-arrow @click-left="router.push('/address')">
+                <van-nav-bar left-arrow @click-left="router.go(-1)">
                     <template #title>
                         <span style="font-size: .7rem;font-weight: bold;">添加收货地址</span>
                     </template>

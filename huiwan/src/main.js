@@ -4,8 +4,8 @@ import './style/index.less'
 import App from './pages/index.vue'
 import router from './router/index'
 import { pinia } from './store'
-import { Circle, NavBar, Search, Icon, Swipe, SwipeItem, Button, CellGroup, Field, Form, Checkbox, ActionBar, ActionBarButton, ActionBarIcon, Tabs, Tab, SubmitBar, Loading, AddressEdit, AddressList, Uploader, Overlay, Popup, Area, Sticky, Rate, ShareSheet, ImagePreview, CheckboxGroup, Grid, GridItem ,Image,TextEllipsis,PullRefresh ,FloatingBubble,Switch,Dialog,Cascader   } from 'vant';
- 
+import { Circle, NavBar, Search, Icon, Swipe, SwipeItem, Button, CellGroup, Field, Form, Checkbox, ActionBar, ActionBarButton, ActionBarIcon, Tabs, Tab, SubmitBar, Loading, AddressEdit, AddressList, Uploader, Overlay, Popup, Area, Sticky, Rate, ShareSheet, ImagePreview, CheckboxGroup, Grid, GridItem, Image, TextEllipsis, PullRefresh, FloatingBubble, Switch, Dialog, Cascader, RadioGroup, Radio } from 'vant';
+
 createApp(App)
     .use(router)
     .use(pinia)
@@ -42,12 +42,14 @@ createApp(App)
     .use(Grid)
     .use(GridItem)
     .use(Image)
-    .use(TextEllipsis )
-    .use(PullRefresh )
-    .use(FloatingBubble )
-    .use(Switch )
+    .use(TextEllipsis)
+    .use(PullRefresh)
+    .use(FloatingBubble)
+    .use(Switch)
     .use(Dialog)
     .use(Cascader)
+    .use(RadioGroup)
+    .use(Radio)
     .mount('#app')
 
 

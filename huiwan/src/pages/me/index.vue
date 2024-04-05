@@ -3,7 +3,7 @@
         <!-- 头部导航 -->
         <header>
             <van-sticky :offset-top="0">
-                <van-nav-bar :title="pageName" left-arrow @click-left="router.go(-1)">
+                <van-nav-bar left-arrow @click-left="router.go(-1)">
                     <template #title>
                         <span style="font-size: .7rem;font-weight: normal;">会员购中心</span>
                     </template>
@@ -30,29 +30,29 @@
             <div class="order">
                 <div class="top">
                     <span>我的订单</span>
-                    <p>
+                    <p @click="router.push({path:'/order',query:{tab:'a'}})">
                         <span>查看全部订单</span>
                         <van-icon name="arrow" style="font-size: .5rem;" />
                     </p>
                 </div>
                 <div class="btm">
-                    <div class="item">
+                    <div class="item" @click="router.push({path:'/order',query:{tab:'b'}})">
                         <van-icon name="pending-payment" badge="9" />
                         <span>待付款</span>
                     </div>
-                    <div class="item">
+                    <div class="item" @click="router.push({path:'/order',query:{tab:'c'}})">
                         <van-icon name="send-gift-o" />
                         <span>待发货</span>
                     </div>
-                    <div class="item">
+                    <div class="item" @click="router.push({path:'/order',query:{tab:'d'}})">
                         <van-icon name="logistics" />
                         <span>待收货</span>
                     </div>
-                    <div class="item">
+                    <div class="item" @click="router.push({path:'/order',query:{tab:'f'}})">
                         <van-icon name="chat-o" />
                         <span>待评价</span>
                     </div>
-                    <div class="item">
+                    <div class="item" @click="router.push({path:'/order',query:{tab:'e'}})">
                         <van-icon name="cash-back-record-o" />
                         <span>退款/售后</span>
                     </div>

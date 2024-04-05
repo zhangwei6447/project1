@@ -3,7 +3,7 @@
         <!-- 头部导航 -->
         <header>
             <van-sticky :offset-top="0">
-                <van-nav-bar :title="pageName" left-arrow @click-left="router.go(-1)">
+                <van-nav-bar left-arrow @click-left="router.go(-1)">
                     <template #title>
                         <span class="maodian" ref="btn_goods">晒图/讨论</span>
                     </template>
