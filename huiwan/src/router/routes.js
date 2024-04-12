@@ -28,13 +28,14 @@ const Add_Address = () => import('../pages/me/add_address.vue')
 const Edit_Address = () => import('../pages/me/edit_address.vue')
 const Order = () => import('../pages/me/order.vue')
 const Pay = () => import('../pages/pay/index.vue')
-const ContinuePay=()=>import('../pages/order/continuePay.vue')
-/**  */
+const ContinuePay = () => import('../pages/order/continuePay.vue')
+const MeSetiing = () => import('../pages/me/me_setting.vue')
+const Popular=()=> import('../pages/popularity/index.vue')
+/**
+ * nologin 免登录
+ * layout 'blank-layout' 没有底部tabs组件
+ */
 export default [
-    /**
-     * nologin 免登录
-     * layout 'blank-layout' 没有底部tabs组件
-     */
     { path: '/', component: Welcome, meta: { nologin: true, layout: 'blank-layout' }, },
     { path: '/login', component: Login, meta: { nologin: true, layout: 'blank-layout' }, },
     { path: '/conts', component: Conts, meta: { nologin: true, layout: 'blank-layout' }, },
@@ -59,4 +60,6 @@ export default [
     { path: '/order', component: Order, meta: { layout: 'blank-layout' }, },
     { path: '/pay', component: Pay, meta: { layout: 'blank-layout' }, },
     { path: '/pay/continue', component: ContinuePay, meta: { layout: 'blank-layout' }, },
+    { path: '/mine/setting', component: MeSetiing, meta: { layout: 'blank-layout' }, },
+    { path: '/popular', component: Popular, meta: { layout: 'blank-layout' }, },
 ]

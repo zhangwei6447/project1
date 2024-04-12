@@ -3,7 +3,7 @@
  * @description 关于用户接口
  */
 
-import { ACCOUNT_LOGIN_URL, AUTO_LOGIN_URL, PHONE_LOGIN_URL, QUERY_USER_URL, SUGGEST_INFO_URL, UPDATE_PASSWORD_URL, USER_CODE_URL, USER_REGISTER_URL, QUERY2_USER_URL } from "../config/urls.cfg";
+import { ACCOUNT_LOGIN_URL, AUTO_LOGIN_URL, PHONE_LOGIN_URL, QUERY_USER_URL, SUGGEST_INFO_URL, UPDATE_PASSWORD_URL, USER_CODE_URL, USER_REGISTER_URL, QUERY2_USER_URL, USER_UPDATE_URL, QUERY_USERNAME_URL, USER_HEAD_URL } from "../config/urls.cfg";
 import { request } from './ajax'
 
 /** 用户免登录Api */
@@ -94,6 +94,42 @@ export function queryUserInfoApi2(user_id) {
         url: QUERY2_USER_URL,
         method: 'POST',
         data: { user_id },
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+    })
+}
+
+/** 修改用户信息Api */
+export function updateUSerInfoApi(data) {
+    return request({
+        url: USER_UPDATE_URL,
+        method: 'POST',
+        data,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+    })
+}
+
+/** 查询用户名是否存在Api */
+export function queryUsernameApi(_id, username) {
+    return request({
+        url: QUERY_USERNAME_URL,
+        method: 'POST',
+        data: { _id, username },
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+    })
+}
+
+/** 上传用户头像Api */
+export function uploadUserHeadApi(img_base64, img_name) {
+    return request({
+        url: USER_HEAD_URL,
+        method: 'POST',
+        data: { img_base64, img_name },
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },

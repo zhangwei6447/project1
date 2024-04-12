@@ -58,9 +58,10 @@ getTypesGoodsApi().then((d) => {
         typesList.value = d.data.map((it) => it.title)
         act.value = typesList.value[0]
         list.value = d.data.map((it) => {
-            it.flag = ["手办雕像", '漫展', '装机助手', '周边'].includes(it.title)
+            it.flag = ["手办", '周边', '图书漫画', '潮玩扭蛋'].includes(it.title)
             return it
         })
+        // console.log(list.value);
     }
 })
 
@@ -83,7 +84,7 @@ function clickEvt(it) {
 // 点击跳转事件
 function toTop(name) {
     router.push({
-        path: './top',
+        path: './popular',
         query: { name }
     })
 }

@@ -1,3 +1,4 @@
+/**-----------------------用户-------------------------------- */
 /** 用户免登录url */
 export const AUTO_LOGIN_URL = '/auto/login'
 /** 获取验证码url */
@@ -12,6 +13,13 @@ export const SUGGEST_INFO_URL = '/suggest/info'
 export const USER_REGISTER_URL = '/user/register'
 /** 修改密码接口url */
 export const UPDATE_PASSWORD_URL = '/update/password'
+/** 修改用户信息 */
+export const USER_UPDATE_URL = '/user/update'
+/** 查询用户名是否存在 */
+export const QUERY_USERNAME_URL = '/query/username'
+/** 上传用户头像 */
+export const USER_HEAD_URL = '/user/head'
+/**------------------------------------------------------- */
 /** 首页分类数据url */
 export const HOME_TYPES_URL = '/home/types'
 /** 首页推荐列表数据url */
@@ -118,6 +126,8 @@ export const ORDER_RECEIVING_GOODS_URL = '/order/receiving/goods'
 /** 查询订单url */
 export const ORDER_QUERY_URL = '/order/query'
 /** 订单修改url */
-export const ORDER_UPDATE_URL = 'order/update'
+export const ORDER_UPDATE_URL = '/order/update'
 /** 取消订单url */
-export const ORDER_CANCEL_URL='/order/cancel'
+export const ORDER_CANCEL_URL = '/order/cancel'
+/**-----------------------人气排行-------------------------------- */
+export const POPULAR_URL = '/popular'
